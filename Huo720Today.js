@@ -2,10 +2,11 @@
 // @name        美剧播出时间表 今天
 // @namespace   superszy
 // @author      superszy
-// @description 适用于https://huo720.com/
+// @description 适用于huo720.com
 // @match       https://huo720.com/calendar*
+// @match       http://huo720.com/calendar*
 // @run-at document-end
-// @version     1.0.5
+// @version     1.0.6
 // ==/UserScript==
 
 {

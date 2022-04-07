@@ -1,10 +1,11 @@
 // ==UserScript==
-// @name         Calculate JustMySocks Flow
-// @version      1
-// @description  Calculate JustMySocks Flow
-// @author       superszy
-// @match        https://justmysocks5.net/members/getbwcounter.php*
-// @grant        none
+// @name        Calculate JustMySocks Flow
+// @namespace   superszy
+// @author      superszy
+// @version     1.0
+// @description Auto calculate JustMySocks flow info to a simple format
+// @match       https://justmysocks5.net/members/getbwcounter.php*
+// @license     MIT
 // ==/UserScript==
 
 (function() {

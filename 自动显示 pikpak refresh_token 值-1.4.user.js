@@ -4,7 +4,7 @@
 // @version      1.0
 // @description  页面加载 5 秒后，读取 localStorage 中以 credentials 开头的选项，只显示其中的 refresh_token 值（浮动框显示，可复制）。
 // @author       superszy
-// @match        https://mypikpak.com/*
+// @match        https://mypikpak.com/drive/all*
 // @license      MIT
 // ==/UserScript==
 
@@ -45,7 +45,7 @@
 
         // 标题栏
         const title = document.createElement("div");
-        title.innerText = "refresh_token 值";
+        title.innerText = "refresh_token";
         title.style.background = "#4CAF50";
         title.style.color = "#fff";
         title.style.padding = "8px";
@@ -97,5 +97,5 @@
         box.appendChild(closeBtn);
 
         document.body.appendChild(box);
-    }, 5000);
+    }, 3000);
 })();

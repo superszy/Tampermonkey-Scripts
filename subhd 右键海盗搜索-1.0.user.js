@@ -5,6 +5,7 @@
 // @description  在 subhd.tv 页面右键选中文本，使用“海盗搜索”跳转 piratebay
 // @match        https://subhd.tv/*
 // @grant        GM_openInTab
+// @license MIT
 // ==/UserScript==
 
 (function () {

@@ -3,7 +3,8 @@
 // @namespace    http://tampermonkey.net/
 // @version      1.0.0
 // @description  在迅雷验证码页面注入 reviewCb 输入框，并捕获控制台中的 creditkey 值
-// @author       Claude
+// @author       superszy
+// @license       MIT
 // @match        https://i.xunlei.com/xlcaptcha/android.html*
 // @grant        GM_setClipboard
 // @run-at       document-start

@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         subhd 右键海盗搜索
+// @name         subhd 海盗搜索
 // @namespace    https://tampermonkey.net/
-// @version      1.0
-// @description  在 subhd.tv 页面右键选中文本，使用“海盗搜索”跳转 piratebay
+// @version      1.1
+// @description  在 subhd.tv 页面选中文本时，自动弹出”海盗搜索”菜单跳转 piratebay
 // @match        https://subhd.tv/*
 // @grant        GM_openInTab
 // @license MIT
@@ -41,20 +41,23 @@
     `;
     document.head.appendChild(style);
 
-    // ===== 右键事件 =====
-    document.addEventListener("contextmenu", function (e) {
-        const text = window.getSelection().toString().trim();
+    // ===== 选中文本事件 =====
+    document.addEventListener("mouseup", function (e) {
+        // 延迟一点获取选中文本，确保选中操作完成
+        setTimeout(() => {
+            const text = window.getSelection().toString().trim();
 
-        if (text.length > 0) {
-            e.preventDefault(); // 阻止系统右键菜单
+            if (text.length > 0) {
+                // 不阻止默认行为，保留正常右键菜单
 
-            menu.style.left = e.clientX + "px";
-            menu.style.top = e.clientY + "px";
-            menu.style.display = "block";
-            menu.dataset.text = text;
-        } else {
-            menu.style.display = "none";
-        }
+                menu.style.left = e.clientX + "px";
+                menu.style.top = e.clientY + "px";
+                menu.style.display = "block";
+                menu.dataset.text = text;
+            } else {
+                menu.style.display = "none";
+            }
+        }, 10);
     });
 
     // ===== 点击菜单 =====

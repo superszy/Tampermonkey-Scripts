@@ -7,6 +7,7 @@
 // @match        https://piratebay.live/search/*
 // @grant        none
 // @run-at       document-end
+// @license      MIT
 // ==/UserScript==
 
 (function () {

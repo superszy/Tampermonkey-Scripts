@@ -1,5 +1,6 @@
 // ==UserScript==
 // @name         修复QNAP登录页面自动填充
+// @namespace    https://github.com/superszy
 // @version      2
 // @description  修复QNAP登录页面的用户名、密码、OTP自动填充问题
 // @author       superszy

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         迅雷验证码助手 / Xunlei Captcha Helper
 // @namespace    http://tampermonkey.net/
-// @version      2.0.0
+// @version      2.0.1
 // @description  在迅雷验证码页面注入 reviewCb 输入框，并捕获控制台中的 creditkey 值
 // @author       superszy
 // @license       MIT

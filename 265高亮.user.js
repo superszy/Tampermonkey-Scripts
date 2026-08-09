@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         265高亮
 // @namespace    https://github.com/superszy
-// @version      1.0.0
+// @version      1.1.0
 // @description  高亮显示 x265、HEVC、ELiTE、MeGusta、AV1
 // @author       superszy
 // @match        https://piratebay.live/search/*
@@ -99,6 +99,70 @@
   }
 
   /**
+   * 为所有 ELiTE 或 MeGusta 添加光环动画
+   */
+  function addAnimationToAllMatches() {
+    // 优先查找 ELiTE，其次 MeGusta
+    const priorityKeywords = ['ELiTE', 'MeGusta'];
+
+    let foundKeyword = null;
+    let targetMarks = [];
+
+    // 查找优先级最高的关键词
+    for (const keyword of priorityKeywords) {
+      const marks = Array.from(document.querySelectorAll('mark'));
+      const matchedMarks = marks.filter(mark =>
+        mark.textContent.toLowerCase() === keyword.toLowerCase()
+      );
+
+      if (matchedMarks.length > 0) {
+        foundKeyword = keyword;
+        targetMarks = matchedMarks;
+        break; // 找到优先级更高的就停止
+      }
+    }
+
+    if (targetMarks.length > 0) {
+      // 找到对应的关键词配置以获取颜色
+      const kw = keywords.find(k =>
+        k.text.toLowerCase() === foundKeyword.toLowerCase()
+      );
+
+      if (kw) {
+        // 创建光环动画样式（只添加一次）
+        const style = document.createElement('style');
+        style.textContent = `
+          @keyframes halo-shrink-${foundKeyword} {
+            0% {
+              box-shadow: 0 0 0 0 ${kw.bgColor}88,
+                          0 0 600px 300px ${kw.bgColor}66,
+                          0 0 1200px 600px ${kw.bgColor}44;
+              transform: scale(5);
+            }
+            100% {
+              box-shadow: 0 0 0 0 ${kw.bgColor}00,
+                          0 0 0 0 ${kw.bgColor}00,
+                          0 0 0 0 ${kw.bgColor}00;
+              transform: scale(1);
+            }
+          }
+          .halo-animated-${foundKeyword} {
+            animation: halo-shrink-${foundKeyword} 1s ease-out forwards;
+            position: relative;
+            display: inline-block;
+          }
+        `;
+        document.head.appendChild(style);
+
+        // 为所有匹配的 mark 添加动画类
+        targetMarks.forEach(mark => {
+          mark.classList.add(`halo-animated-${foundKeyword}`);
+        });
+      }
+    }
+  }
+
+  /**
    * 主函数：对整个页面正文进行高亮
    */
   function main() {
@@ -106,6 +170,9 @@
     if (!target) return;
 
     highlightTextNodes(target);
+
+    // 高亮完成后添加动画
+    setTimeout(() => addAnimationToAllMatches(), 100);
 
     // 监听动态加载的内容（如 AJAX 翻页）
     const observer = new MutationObserver(mutations => {

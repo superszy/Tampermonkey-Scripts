@@ -4,7 +4,7 @@
 // @version      1.2.0
 // @description  高亮显示 x265、HEVC、ELiTE、MeGusta、AV1
 // @author       superszy
-// @match        https://thepiratebay.org/search/*
+// @match        https://thepiratebay.org/search*
 // @grant        none
 // @run-at       document-end
 // @license      MIT

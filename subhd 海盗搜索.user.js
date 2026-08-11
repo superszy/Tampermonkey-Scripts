@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         subhd 海盗搜索
 // @namespace    https://tampermonkey.net/
-// @version      1.1
+// @version      1.2
 // @description  在 subhd.tv 页面选中文本时，自动弹出”海盗搜索”菜单跳转 piratebay
 // @match        https://subhd.tv/*
 // @grant        GM_openInTab

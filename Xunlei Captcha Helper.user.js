@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         迅雷验证码助手 / Xunlei Captcha Helper
 // @namespace    http://tampermonkey.net/
-// @version      2.0.0
+// @version      2.0.1
 // @description  在迅雷验证码页面注入 reviewCb 输入框，并捕获控制台中的 creditkey 值
 // @author       superszy
 // @license       MIT
@@ -190,8 +190,11 @@
 
             if (typeof GM_setClipboard !== "undefined") {
                 GM_setClipboard(value);
+                showToast("信用密钥复制成功");
             } else {
-                navigator.clipboard.writeText(value);
+                navigator.clipboard.writeText(value).then(() => {
+                    showToast("信用密钥复制成功");
+                });
             }
 
             console.log("已复制 creditkey");
@@ -205,6 +208,39 @@
         container.appendChild(row2);
 
         document.body.insertBefore(container, document.body.firstChild);
+    }
+
+    function showToast(message) {
+
+        const toast = document.createElement("div");
+        toast.textContent = message;
+        toast.style.position = "fixed";
+        toast.style.top = "20px";
+        toast.style.left = "50%";
+        toast.style.transform = "translateX(-50%)";
+        toast.style.background = "linear-gradient(135deg, #667eea 0%, #764ba2 100%)";
+        toast.style.color = "#fff";
+        toast.style.padding = "12px 24px";
+        toast.style.borderRadius = "8px";
+        toast.style.fontSize = "14px";
+        toast.style.fontWeight = "bold";
+        toast.style.boxShadow = "0 4px 12px rgba(0,0,0,0.3)";
+        toast.style.zIndex = "9999999";
+        toast.style.opacity = "0";
+        toast.style.transition = "opacity 0.3s";
+
+        document.body.appendChild(toast);
+
+        setTimeout(() => {
+            toast.style.opacity = "1";
+        }, 10);
+
+        setTimeout(() => {
+            toast.style.opacity = "0";
+            setTimeout(() => {
+                document.body.removeChild(toast);
+            }, 300);
+        }, 2000);
     }
 
     function format(args) {

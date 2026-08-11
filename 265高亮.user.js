@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         265高亮
 // @namespace    https://github.com/superszy
-// @version      1.1.0
+// @version      1.2.0
 // @description  高亮显示 x265、HEVC、ELiTE、MeGusta、AV1
 // @author       superszy
-// @match        https://piratebay.live/search/*
+// @match        https://thepiratebay.org/search/*
 // @grant        none
 // @run-at       document-end
 // @license      MIT

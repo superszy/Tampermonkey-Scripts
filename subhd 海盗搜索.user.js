@@ -65,7 +65,7 @@
         const text = menu.dataset.text;
         if (!text) return;
 
-        const url = "https://thepiratebay.org.live/search/" + encodeURIComponent(text);
+        const url = "https://thepiratebay.org/search/" + encodeURIComponent(text);
         GM_openInTab(url, { active: true });
 
         menu.style.display = "none";

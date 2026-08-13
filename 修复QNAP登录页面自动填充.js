@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         修复QNAP登录页面自动填充
 // @namespace    https://github.com/superszy
-// @version      2
+// @version      3
 // @description  修复QNAP登录页面的用户名、密码、OTP自动填充问题
 // @author       superszy
 // @match        https://*.myqnapcloud.com/*
@@ -29,5 +29,16 @@
 
     if(otpInput != null){
         otpInput.setAttribute('autocomplete', 'one-time-code');
+
+        // Auto-submit when 6-digit OTP is entered
+        otpInput.addEventListener('input', function() {
+            var value = this.value.trim();
+            if(/^\d{6}$/.test(value)){
+                var submitBtn = document.getElementById('scySubmit');
+                if(submitBtn != null){
+                    submitBtn.click();
+                }
+            }
+        });
     }
 })();

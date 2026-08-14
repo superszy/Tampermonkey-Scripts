@@ -1,11 +1,13 @@
 // ==UserScript==
 // @name         subhd 海盗搜索
 // @namespace    https://tampermonkey.net/
-// @version      1.3.0
+// @version      1.3.1
 // @description  在 subhd.tv 页面选中文本时，自动弹出"海盗搜索"菜单跳转 piratebay（支持多站点选择）
 // @match        https://subhd.tv/*
 // @grant        GM_openInTab
 // @license MIT
+// @downloadURL https://update.greasyfork.org/scripts/564421/subhd%20%E6%B5%B7%E7%9B%97%E6%90%9C%E7%B4%A2.user.js
+// @updateURL https://update.greasyfork.org/scripts/564421/subhd%20%E6%B5%B7%E7%9B%97%E6%90%9C%E7%B4%A2.meta.js
 // ==/UserScript==
 
 (function () {
@@ -13,10 +15,13 @@
 
     // ===== 海盗湾站点列表 =====
     const pirateUrls = [
-        { name: "ThePirateBay.org", url: "https://thepiratebay.org/" },
-        { name: "PirateBay.live", url: "https://piratebay.live/" },
-        { name: "PirateBay.party", url: "https://piratebay.party/" },
-        { name: "PirateBayProxy.live", url: "https://piratebayproxy.live/" }
+        { name: "ThePirateBay.org", url: "https://thepiratebay.org/search/" },
+        { name: "PirateBay.live", url: "https://piratebay.live/search/" },
+        { name: "PirateBay.party", url: "https://piratebay.party/search/" },
+        { name: "PirateBayProxy.live", url: "https://piratebayproxy.live/search/" },
+        { name: "BTSOW", url: "https://btsow.live/search/" },
+        { name: "Torrent Kitty", url: "https://www.torrentkitty.tv/search/" },
+        { name: "Code", url: "https://so.techlife.app/code/" }
     ];
 
     let menu, submenu;
@@ -126,7 +131,7 @@
             const text = menu.dataset.text;
             if (!text) return;
 
-            const url = pirateUrls[0].url + "search/" + encodeURIComponent(text);
+            const url = pirateUrls[0].url + encodeURIComponent(text);
             console.log('[海盗搜索] 打开链接:', url);
             GM_openInTab(url, { active: true });
 
@@ -169,7 +174,7 @@
                 const text = menu.dataset.text;
                 if (!text) return;
 
-                const url = pirateUrls[index].url + "search/" + encodeURIComponent(text);
+                const url = pirateUrls[index].url + encodeURIComponent(text);
                 console.log('[海盗搜索] 打开链接:', url);
                 GM_openInTab(url, { active: true });
 

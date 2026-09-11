@@ -7,6 +7,7 @@
 // @match        https://pan.quark.cn/*
 // @grant        GM_setClipboard
 // @run-at       document-start
+// @license      MIT
 // ==/UserScript==
 
 (function() {

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         subhd 海盗搜索
 // @namespace    https://tampermonkey.net/
-// @version      1.3.1
+// @version      1.3.2
 // @description  在 subhd.tv 页面选中文本时，自动弹出"海盗搜索"菜单跳转 piratebay（支持多站点选择）
 // @match        https://subhd.tv/*
 // @grant        GM_openInTab
@@ -14,9 +14,9 @@
     'use strict';
 
     // ===== 海盗湾站点列表 =====
-    const pirateUrls = [
-        { name: "ThePirateBay.org", url: "https://thepiratebay.org/search/" },
+    const pirateUrls = [        
         { name: "PirateBay.live", url: "https://piratebay.live/search/" },
+        { name: "ThePirateBay.org", url: "https://thepiratebay.org/search/" },
         { name: "PirateBay.party", url: "https://piratebay.party/search/" },
         { name: "PirateBayProxy.live", url: "https://piratebayproxy.live/search/" },
         { name: "BTSOW", url: "https://btsow.live/search/" },
